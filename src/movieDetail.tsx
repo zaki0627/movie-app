@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
+import "./movieDetail.css";
 
 export default function Moviedetail() {
   interface Movie {

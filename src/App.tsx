@@ -49,13 +49,23 @@ function App() {
             keyword === "" ? true : movie.original_title.includes(keyword),
           )
           .map((movie) => (
-            <Link to={`/movies/${movie.id}`} key={movie.id}>
-              <p>{movie.original_title}</p>
-              <img
-                src={`https://media.themoviedb.org/t/p/w300_and_h450_face${movie.poster_path}`}
-              />
-
-              <p>{movie.overview}</p>
+            <Link
+              to={`/movies/${movie.id}`}
+              key={movie.id}
+              className="movie-card"
+            >
+              <div className="left">
+                <p className="movie-title">{movie.original_title}</p>
+                <div className="image-wrapper">
+                  <img
+                    className="movie-image"
+                    src={`https://media.themoviedb.org/t/p/w300_and_h450_face${movie.poster_path}`}
+                  />
+                </div>
+              </div>
+              <div className="right">
+                <p className="movie-overview">{movie.overview}</p>
+              </div>
             </Link>
           ))}
       </div>
