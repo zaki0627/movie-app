@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 import { Link } from "react-router";
+import { useDebouncedCallback } from "use-debounce";
 
 function App() {
   interface Movie {
@@ -33,8 +34,9 @@ function App() {
   };
 
   useEffect(() => {
-    fetchMovieList();
+    debouncedSeach();
   }, [keyword]);
+  const debouncedSeach = useDebouncedCallback(fetchMovieList, 500);
 
   return (
     <>
