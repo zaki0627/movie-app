@@ -1,15 +1,14 @@
 import { useEffect, useState } from "react";
 import "./App.css";
-import { Link } from "react-router";
 import { useDebouncedCallback } from "use-debounce";
-
+import MovieCard from "./movieCard";
+export interface Movie {
+  id: string;
+  original_title: string;
+  overview?: string;
+  poster_path: string;
+}
 function App() {
-  interface Movie {
-    id: string;
-    original_title: string;
-    overview: string;
-    poster_path: string;
-  }
   const [keyword, setKeyword] = useState("");
   const [movieList, setMovieList] = useState<Movie[]>([]);
   const fetchMovieList = async () => {
@@ -51,24 +50,7 @@ function App() {
             keyword === "" ? true : movie.original_title.includes(keyword),
           )
           .map((movie) => (
-            <Link
-              to={`/movies/${movie.id}`}
-              key={movie.id}
-              className="movie-card"
-            >
-              <div className="left">
-                <p className="movie-title">{movie.original_title}</p>
-                <div className="image-wrapper">
-                  <img
-                    className="movie-image"
-                    src={`https://media.themoviedb.org/t/p/w300_and_h450_face${movie.poster_path}`}
-                  />
-                </div>
-              </div>
-              <div className="right">
-                <p className="movie-overview">{movie.overview}</p>
-              </div>
-            </Link>
+            <MovieCard movie={movie} />
           ))}
       </div>
     </>
